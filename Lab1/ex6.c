@@ -6,9 +6,29 @@ Napisz funkcję, która szyfruje ciąg znaków podany jako argument. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+char encLetter(char c, int k)
+{
+    int buffer = (int)c;
+    if (buffer >= 65 && buffer <= 90)
+    {
+        buffer += k;
+        while (buffer > 90)
+            buffer -= 26;
+        return (char)buffer;
+    }
+    else if (buffer >= 97 && buffer <= 122)
+    {
+        buffer += k;
+        while (buffer > 122)
+            buffer -= 26;
+        return (char)buffer;
+    }
+}
 char* encrypt(char* word, int size, int k)
 {
-    
+    for (int i = 0; i < size; ++i)
+        word[i] = encLetter(word[i], k);
+    return word;
 }
 int main()
 {
@@ -18,6 +38,6 @@ int main()
     scanf("%d", &k);
     printf("word to encrypt: ");
     scanf("%s", &word);
-    printf("%s\n", encrypt(word, strlen(word), k));
+    printf("Encrypted word: %s\n", encrypt(word, strlen(word), k));
     return 0;
 }
