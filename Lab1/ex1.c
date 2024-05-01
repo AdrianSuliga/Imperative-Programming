@@ -14,3 +14,4 @@ int main()
     printf("n! = %lu\n", result);
     return 0;
 }
+// gcc -std=gnu11 -Wall -o file file.c -lm
